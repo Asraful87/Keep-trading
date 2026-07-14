@@ -1,4 +1,5 @@
 import dotenv from "dotenv";
+import { getSettings } from "./web/db.js";
 
 dotenv.config();
 
@@ -7,7 +8,7 @@ function getEnv(name, fallback = "") {
   return value === undefined || value === "" ? fallback : value;
 }
 
-export const config = {
+export let config = {
   token: getEnv("DISCORD_TOKEN"),
   clientId: getEnv("CLIENT_ID"),
   guildId: getEnv("GUILD_ID"),
@@ -30,4 +31,19 @@ export function validateConfig() {
   if (!config.token) errors.push("DISCORD_TOKEN is missing");
   if (!config.clientId) errors.push("CLIENT_ID is missing");
   return errors;
+}
+
+// Apply connection settings saved from the dashboard (bot token / client id /
+// server). Saved settings override env values. Falls back to env when absent.
+export async function loadRuntimeOverrides() {
+  try {
+    const s = await getSettings();
+    if (s) {
+      if (s.token) config.token = s.token;
+      if (s.clientId) config.clientId = s.clientId;
+      if (s.guildId) config.guildId = s.guildId;
+    }
+  } catch (e) {
+    console.warn("[config] could not load saved settings:", e.message);
+  }
 }

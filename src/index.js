@@ -1,11 +1,12 @@
 import { Client, GatewayIntentBits, Events, Collection } from "discord.js";
-import { config, validateConfig } from "./config.js";
+import { config, validateConfig, loadRuntimeOverrides } from "./config.js";
 import sendCommand from "./commands/send.js";
 import purgeCommand from "./commands/purge.js";
 import { startWebServer } from "./web/server.js";
 import { buildWelcomeEmbed } from "./welcome.js";
 import { handleMemberJoin, logJoin } from "./antiraid.js";
 
+await loadRuntimeOverrides();
 const errors = validateConfig();
 if (errors.length) {
   console.error("Missing configuration:\n" + errors.map((e) => ` - ${e}`).join("\n"));

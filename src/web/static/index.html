@@ -301,6 +301,9 @@
     <button class="navbtn" data-target="panel-buttons">
       <svg viewBox="0 0 24 24"><path d="M9 3v6l-4 8h4l1-2h6l1 2h4l-4-8V3"/><path d="M9 3h6"/></svg>Buttons
     </button>
+    <button class="navbtn" data-target="panel-connection">
+      <svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><circle cx="12" cy="12" r="4"/></svg>Connection
+    </button>
   </nav>
 
   <main class="editor">
@@ -389,6 +392,23 @@
         <h3>Buttons <span style="color:var(--muted);font-weight:500;text-transform:none;letter-spacing:0">· max 25</span></h3>
         <div id="buttonsList"></div>
         <button class="add-btn" onclick="addButton()">+ Add button</button>
+      </div>
+    </section>
+
+    <!-- Connection -->
+    <section id="panel-connection" class="panel">
+      <div class="card">
+        <h3>Bot Connection</h3>
+        <p class="hint">Change which bot, application and server this dashboard controls. Changes restart the bot with the new identity. The token is verified before saving.</p>
+        <label>Bot Token</label><input id="connToken" type="text" placeholder="Discord bot token" autocomplete="off" />
+        <label>Client ID</label><input id="connClientId" type="text" placeholder="Application / client ID" autocomplete="off" />
+        <label>Server (guild)</label>
+        <select id="connGuild"></select>
+        <button class="upload-btn" id="btnConnFetch" type="button">🔄 Fetch channels for this server</button>
+        <div id="connChannels" class="hint">Pick a server and click fetch to list its channels.</div>
+        <div class="row-actions" style="margin-top:16px">
+          <button class="btn primary" id="btnConnSave" type="button">Save &amp; Restart</button>
+        </div>
       </div>
     </section>
   </main>
@@ -724,6 +744,7 @@ renderForm(); preview(); checkHealth();
     document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
     btn.classList.add('active');
     document.getElementById(btn.dataset.target).classList.add('active');
+    if (btn.dataset.target === 'panel-connection' && window.loadConnection) loadConnection();
   });
 
   const limits = { titleCount: 256, descCount: 4096, footerCount: 2048 };
@@ -742,6 +763,53 @@ renderForm(); preview(); checkHealth();
   });
   syncCounts();
   setInterval(syncCounts, 600);
+})();
+</script>
+
+<script>
+// ---- Connection panel: change bot token / client id / server ----
+(function () {
+  async function loadGuilds() {
+    const sel = $('connGuild'); if (!sel) return;
+    sel.innerHTML = '';
+    const r = await API({ path: '/guilds' });
+    if (r.ok) (r.data.guilds || []).forEach(g => {
+      const o = document.createElement('option'); o.value = g.id; o.textContent = g.name; sel.appendChild(o);
+    });
+  }
+  window.loadConnection = async function () {
+    const r = await API({ path: '/connection' });
+    if (r.ok) {
+      $('connToken').value = r.data.token || '';
+      $('connClientId').value = r.data.clientId || '';
+      $('connGuild').value = r.data.guildId || '';
+    }
+    await loadGuilds();
+  };
+  async function loadConnChannels() {
+    const gid = $('connGuild').value;
+    const box = $('connChannels'); box.innerHTML = '';
+    const r = await API({ path: '/channels' + (gid ? ('?guildId=' + gid) : '') });
+    if (!r.ok) { box.textContent = 'Failed: ' + (r.data.error || r.status); return; }
+    const cats = r.data.categories || [];
+    if (!cats.length) { box.textContent = 'No channels found for this server.'; return; }
+    cats.forEach(c => {
+      const h = document.createElement('div'); h.style.cssText = 'margin:10px 0 4px;font-weight:700;color:var(--muted)'; h.textContent = '📁 ' + c.name; box.appendChild(h);
+      (c.channels || []).forEach(ch => {
+        const d = document.createElement('div'); d.style.cssText = 'font-size:12px;padding:2px 0 2px 10px;color:var(--text)'; d.textContent = '# ' + ch.name; box.appendChild(d);
+      });
+    });
+  }
+  function saveConnection() {
+    const body = { token: $('connToken').value.trim(), clientId: $('connClientId').value.trim(), guildId: $('connGuild').value.trim() };
+    if (!body.token) return toast('Bot token is required.');
+    API({ path: '/connection', method: 'POST', body }).then(r => {
+      if (r.ok) toast('Saved — bot restarting with new identity…');
+      else toast('Error: ' + (r.data.error || r.status));
+    });
+  }
+  const bf = $('btnConnFetch'); if (bf) bf.onclick = loadConnChannels;
+  const bs = $('btnConnSave'); if (bs) bs.onclick = saveConnection;
 })();
 </script>
 </body>

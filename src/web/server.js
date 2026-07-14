@@ -12,6 +12,8 @@ import {
   ButtonBuilder,
   ButtonStyle,
   ChannelType,
+  REST,
+  Routes,
 } from "discord.js";
 import {
   listTemplates,
@@ -19,6 +21,8 @@ import {
   createTemplate,
   updateTemplate,
   deleteTemplate,
+  getSettings,
+  saveSettings,
 } from "./db.js";
 import { requireToken } from "./auth.js";
 
@@ -281,6 +285,43 @@ export function startWebServer(client, config) {
           createdBy: src.createdBy,
         });
         return sendJson(res, 201, { template: copy });
+      }
+
+      // ---- Guilds the bot is in (Connection panel server picker) ----
+      if (pathname === "/api/guilds" && req.method === "GET") {
+        try {
+          await client.guilds.fetch();
+        } catch {
+          /* ignore — use cache if fetch fails */
+        }
+        const guilds = client.guilds.cache.map((g) => ({ id: g.id, name: g.name }));
+        return sendJson(res, 200, { guilds });
+      }
+
+      // ---- Connection settings: bot token / client id / server ----
+      if (pathname === "/api/connection" && req.method === "GET") {
+        return sendJson(res, 200, {
+          token: config.token || "",
+          clientId: config.clientId || "",
+          guildId: config.guildId || "",
+        });
+      }
+      if (pathname === "/api/connection" && req.method === "POST") {
+        const body = await readBody(req);
+        const token = (body.token || "").trim();
+        const clientId = (body.clientId || "").trim();
+        const guildId = (body.guildId || "").trim();
+        if (!token) return sendJson(res, 400, { error: "Bot token is required." });
+        try {
+          const rest = new REST({ version: "10" }).setToken(token);
+          await rest.get(Routes.user("@me"));
+        } catch (e) {
+          return sendJson(res, 400, { error: "Invalid bot token: " + (e.message || "auth failed") });
+        }
+        await saveSettings({ token, clientId, guildId });
+        sendJson(res, 200, { ok: true, restarting: true });
+        setTimeout(() => process.exit(0), 400);
+        return;
       }
 
       // ---- Channels (publish target picker) ----
