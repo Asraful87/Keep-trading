@@ -1,0 +1,20 @@
+{
+  "name": "keepgoing-discord-bot",
+  "version": "1.0.0",
+  "description": "Discord bot for KEEPGOING Trading Group: welcome, anti-raid, purge, Embed Builder dashboard",
+  "type": "module",
+  "main": "src/index.js",
+  "engines": {
+    "node": "24.x"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "deploy": "node src/deploy-commands.js",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "dependencies": {
+    "discord.js": "^14.16.3",
+    "dotenv": "^16.4.5",
+    "pg": "^8.13.0"
+  }
+}

@@ -1,0 +1,661 @@
+{
+  "guild": {
+    "id": "1525039903476420710",
+    "name": "KeepGoing Trading Group"
+  },
+  "generatedAt": "2026-07-13T22:30:39.259Z",
+  "roles": [
+    {
+      "id": "1525957106962923653",
+      "name": "KEEPGOING TRADING BOT",
+      "position": 13,
+      "permissions": [
+        "CreateInstantInvite",
+        "KickMembers",
+        "BanMembers",
+        "Administrator",
+        "ManageChannels",
+        "ManageGuild",
+        "AddReactions",
+        "ViewAuditLog",
+        "PrioritySpeaker",
+        "ViewChannel",
+        "SendMessages",
+        "SendTTSMessages",
+        "ManageMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "MentionEveryone",
+        "UseExternalEmojis",
+        "ViewGuildInsights",
+        "Connect",
+        "Speak",
+        "MuteMembers",
+        "UseVAD",
+        "ChangeNickname",
+        "ManageNicknames",
+        "ManageRoles",
+        "ManageWebhooks",
+        "ManageEmojisAndStickers",
+        "ManageGuildExpressions",
+        "UseApplicationCommands",
+        "RequestToSpeak",
+        "ManageEvents",
+        "ManageThreads",
+        "UseExternalStickers",
+        "SendMessagesInThreads",
+        "UseEmbeddedActivities",
+        "ModerateMembers",
+        "CreateGuildExpressions",
+        "CreateEvents",
+        "UseExternalSounds",
+        "SendVoiceMessages",
+        "SetVoiceChannelStatus",
+        "SendPolls",
+        "UseExternalApps",
+        "PinMessages",
+        "BypassSlowmode"
+      ]
+    },
+    {
+      "id": "1525120527050473535",
+      "name": "👑 Owner",
+      "position": 12,
+      "permissions": [
+        "CreateInstantInvite",
+        "KickMembers",
+        "BanMembers",
+        "Administrator",
+        "ManageChannels",
+        "ManageGuild",
+        "ViewAuditLog",
+        "ViewChannel",
+        "ManageMessages",
+        "ReadMessageHistory",
+        "MentionEveryone",
+        "ManageRoles",
+        "ManageWebhooks",
+        "ManageEmojisAndStickers",
+        "ManageGuildExpressions",
+        "CreateGuildExpressions",
+        "PinMessages",
+        "BypassSlowmode"
+      ]
+    },
+    {
+      "id": "1526199066076381284",
+      "name": "Whop Bot",
+      "position": 11,
+      "permissions": [
+        "CreateInstantInvite",
+        "KickMembers",
+        "BanMembers",
+        "ManageChannels",
+        "ManageGuild",
+        "AddReactions",
+        "ViewAuditLog",
+        "ViewChannel",
+        "SendMessages",
+        "ManageMessages",
+        "EmbedLinks",
+        "MentionEveryone",
+        "UseExternalEmojis",
+        "ManageRoles",
+        "ManageWebhooks"
+      ]
+    },
+    {
+      "id": "1525120528904356001",
+      "name": "🛡️ Admin",
+      "position": 10,
+      "permissions": [
+        "KickMembers",
+        "BanMembers",
+        "Administrator",
+        "ManageChannels",
+        "ManageGuild",
+        "ManageRoles"
+      ]
+    },
+    {
+      "id": "1525120531676926133",
+      "name": "🎓 Coach",
+      "position": 9,
+      "permissions": [
+        "SendMessages",
+        "ManageMessages"
+      ]
+    },
+    {
+      "id": "1525120534172405833",
+      "name": "🔨 Moderator",
+      "position": 8,
+      "permissions": [
+        "KickMembers",
+        "BanMembers",
+        "ManageMessages"
+      ]
+    },
+    {
+      "id": "1525120536211099781",
+      "name": "💎 Process Lab",
+      "position": 7,
+      "permissions": []
+    },
+    {
+      "id": "1525120538375094333",
+      "name": "📈 Member",
+      "position": 6,
+      "permissions": []
+    },
+    {
+      "id": "1525120540627697854",
+      "name": "🤖 Bots",
+      "position": 5,
+      "permissions": [
+        "ManageChannels",
+        "ViewChannel",
+        "SendMessages",
+        "ReadMessageHistory",
+        "ManageRoles",
+        "ManageWebhooks",
+        "UseApplicationCommands"
+      ]
+    },
+    {
+      "id": "1525151636325142529",
+      "name": "Server Booster",
+      "position": 4,
+      "permissions": [
+        "CreateInstantInvite",
+        "AddReactions",
+        "Stream",
+        "ViewChannel",
+        "SendMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "UseExternalEmojis",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "ChangeNickname",
+        "UseApplicationCommands",
+        "RequestToSpeak",
+        "CreatePublicThreads",
+        "CreatePrivateThreads",
+        "UseExternalStickers",
+        "SendMessagesInThreads",
+        "UseEmbeddedActivities",
+        "UseSoundboard",
+        "UseExternalSounds",
+        "SendVoiceMessages",
+        "SetVoiceChannelStatus",
+        "SendPolls",
+        "UseExternalApps"
+      ]
+    },
+    {
+      "id": "1525079811054239778",
+      "name": "Kova",
+      "position": 3,
+      "permissions": [
+        "KickMembers",
+        "Administrator",
+        "ManageChannels",
+        "ManageGuild",
+        "ViewChannel",
+        "SendMessages",
+        "ManageMessages",
+        "EmbedLinks",
+        "ReadMessageHistory",
+        "ManageRoles",
+        "UseApplicationCommands",
+        "ManageThreads",
+        "UseEmbeddedActivities",
+        "ModerateMembers",
+        "SendVoiceMessages",
+        "PinMessages"
+      ]
+    },
+    {
+      "id": "1525089305222189167",
+      "name": "Paid",
+      "position": 2,
+      "permissions": []
+    },
+    {
+      "id": "1526352847460106331",
+      "name": "🎓 Alumni",
+      "position": 1,
+      "permissions": []
+    },
+    {
+      "id": "1525039903476420710",
+      "name": "@everyone",
+      "position": 0,
+      "permissions": [
+        "AddReactions",
+        "Stream",
+        "ViewChannel",
+        "SendMessages",
+        "EmbedLinks",
+        "AttachFiles",
+        "ReadMessageHistory",
+        "UseExternalEmojis",
+        "Connect",
+        "Speak",
+        "UseVAD",
+        "ChangeNickname",
+        "UseApplicationCommands",
+        "RequestToSpeak",
+        "CreatePublicThreads",
+        "CreatePrivateThreads",
+        "UseExternalStickers",
+        "SendMessagesInThreads",
+        "UseEmbeddedActivities",
+        "UseSoundboard",
+        "UseExternalSounds",
+        "SendVoiceMessages",
+        "SetVoiceChannelStatus",
+        "SendPolls",
+        "UseExternalApps"
+      ]
+    }
+  ],
+  "channels": [
+    {
+      "id": "1526354234554187876",
+      "name": "🎫・open-ticket",
+      "type": "GuildText",
+      "parentId": "1526354230649028820",
+      "position": 0
+    },
+    {
+      "id": "1526354071924117589",
+      "name": "📌 START HERE",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 0
+    },
+    {
+      "id": "1525118768726933564",
+      "name": "🤖・bot-logs",
+      "type": "GuildText",
+      "parentId": "1526354248365899816",
+      "position": 0
+    },
+    {
+      "id": "1525118580398751804",
+      "name": "🧠・market-commentary",
+      "type": "GuildText",
+      "parentId": "1525118569656877108",
+      "position": 0
+    },
+    {
+      "id": "1526354176500830240",
+      "name": "📢・lab-announcements",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 0
+    },
+    {
+      "id": "1526354215000084630",
+      "name": "💬・alumni-lounge",
+      "type": "GuildText",
+      "parentId": "1526354210860564590",
+      "position": 0
+    },
+    {
+      "id": "1526354076198109285",
+      "name": "👋・welcome",
+      "type": "GuildText",
+      "parentId": "1526354071924117589",
+      "position": 0
+    },
+    {
+      "id": "1526354145915703427",
+      "name": "📊・daily-analysis",
+      "type": "GuildText",
+      "parentId": "1526354142153412690",
+      "position": 0
+    },
+    {
+      "id": "1526354104627101749",
+      "name": "📍・stage-1-market-foundation",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 0
+    },
+    {
+      "id": "1526354108360036532",
+      "name": "📍・stage-2-market-structure",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 1
+    },
+    {
+      "id": "1525118544000585773",
+      "name": "📜・community-rules",
+      "type": "GuildText",
+      "parentId": "1526354071924117589",
+      "position": 1
+    },
+    {
+      "id": "1526354180493545492",
+      "name": "📖・week-1-building-your-process",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 1
+    },
+    {
+      "id": "1526354148969152596",
+      "name": "📈・trade-reviews",
+      "type": "GuildText",
+      "parentId": "1526354142153412690",
+      "position": 1
+    },
+    {
+      "id": "1526354252727976138",
+      "name": "📋・staff-dashboard",
+      "type": "GuildText",
+      "parentId": "1526354248365899816",
+      "position": 1
+    },
+    {
+      "id": "1526354218489872574",
+      "name": "📈・continued-trade-reviews",
+      "type": "GuildText",
+      "parentId": "1526354210860564590",
+      "position": 1
+    },
+    {
+      "id": "1525118584693456979",
+      "name": "📈・trade-reviews",
+      "type": "GuildText",
+      "parentId": "1525118569656877108",
+      "position": 1
+    },
+    {
+      "id": "1526354238307827872",
+      "name": "💳・billing-support",
+      "type": "GuildText",
+      "parentId": "1526354230649028820",
+      "position": 1
+    },
+    {
+      "id": "1526354100655095930",
+      "name": "🎓 EDUCATIONAL ROADMAP",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 1
+    },
+    {
+      "id": "1526354111694635142",
+      "name": "📍・stage-3-supply-demand",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 2
+    },
+    {
+      "id": "1526354142153412690",
+      "name": "📊 TRADING FLOOR",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 2
+    },
+    {
+      "id": "1526354221794984017",
+      "name": "🧠・process-improvements",
+      "type": "GuildText",
+      "parentId": "1526354210860564590",
+      "position": 2
+    },
+    {
+      "id": "1526354256473620660",
+      "name": "💬・staff-chat",
+      "type": "GuildText",
+      "parentId": "1526354248365899816",
+      "position": 2
+    },
+    {
+      "id": "1526354183970619453",
+      "name": "🎥・week-2-reviewing-trades",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 2
+    },
+    {
+      "id": "1526354242108129310",
+      "name": "❓・general-support",
+      "type": "GuildText",
+      "parentId": "1526354230649028820",
+      "position": 2
+    },
+    {
+      "id": "1525118596718788710",
+      "name": "☕・off-topic",
+      "type": "GuildText",
+      "parentId": "1525118569656877108",
+      "position": 2
+    },
+    {
+      "id": "1526354152731574482",
+      "name": "📝・process-journal",
+      "type": "GuildText",
+      "parentId": "1526354142153412690",
+      "position": 2
+    },
+    {
+      "id": "1526354085744345260",
+      "name": "🧭・how-to-navigate",
+      "type": "GuildText",
+      "parentId": "1526354071924117589",
+      "position": 2
+    },
+    {
+      "id": "1526354156166578197",
+      "name": "📸・chart-markups",
+      "type": "GuildText",
+      "parentId": "1526354142153412690",
+      "position": 3
+    },
+    {
+      "id": "1526354187666063391",
+      "name": "🧠・week-3-eliminating-mistakes",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 3
+    },
+    {
+      "id": "1526354089162707097",
+      "name": "🙋・introduce-yourself",
+      "type": "GuildText",
+      "parentId": "1526354071924117589",
+      "position": 3
+    },
+    {
+      "id": "1525118569656877108",
+      "name": "💬 COMMUNITY",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 3
+    },
+    {
+      "id": "1526354225540628520",
+      "name": "🏆・success-stories",
+      "type": "GuildText",
+      "parentId": "1526354210860564590",
+      "position": 3
+    },
+    {
+      "id": "1526354259925532784",
+      "name": "📝・mod-notes",
+      "type": "GuildText",
+      "parentId": "1526354248365899816",
+      "position": 3
+    },
+    {
+      "id": "1526354115070787744",
+      "name": "📍・stage-4-multi-timeframe",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 3
+    },
+    {
+      "id": "1526354172214120590",
+      "name": "🧪 PROCESS LAB",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 4
+    },
+    {
+      "id": "1526354118292275382",
+      "name": "📍・stage-5-entries-risk-management",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 4
+    },
+    {
+      "id": "1526354159979462757",
+      "name": "💬・market-discussion",
+      "type": "GuildText",
+      "parentId": "1526354142153412690",
+      "position": 4
+    },
+    {
+      "id": "1526354191596130304",
+      "name": "🚀・week-4-building-confidence",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 4
+    },
+    {
+      "id": "1526354263461073077",
+      "name": "📊・member-management",
+      "type": "GuildText",
+      "parentId": "1526354248365899816",
+      "position": 4
+    },
+    {
+      "id": "1526354092627070996",
+      "name": "📢・announcements",
+      "type": "GuildText",
+      "parentId": "1526354071924117589",
+      "position": 4
+    },
+    {
+      "id": "1526354163427180667",
+      "name": "🎥・live-sessions",
+      "type": "GuildText",
+      "parentId": "1526354142153412690",
+      "position": 5
+    },
+    {
+      "id": "1526354210860564590",
+      "name": "🎓 PROCESS LAB ALUMNI",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 5
+    },
+    {
+      "id": "1526354095647227956",
+      "name": "❓・faq",
+      "type": "GuildText",
+      "parentId": "1526354071924117589",
+      "position": 5
+    },
+    {
+      "id": "1526354122234663024",
+      "name": "📍・stage-6-record-yourself",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 5
+    },
+    {
+      "id": "1526354195442040963",
+      "name": "📤・homework-submissions",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 5
+    },
+    {
+      "id": "1526354274928431144",
+      "name": "💳・whop-payment-logs",
+      "type": "GuildText",
+      "parentId": "1526354248365899816",
+      "position": 5
+    },
+    {
+      "id": "1526354167067836526",
+      "name": "📚・session-replays",
+      "type": "GuildText",
+      "parentId": "1526354142153412690",
+      "position": 6
+    },
+    {
+      "id": "1526354198478852129",
+      "name": "💬・cohort-chat",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 6
+    },
+    {
+      "id": "1526354125816729810",
+      "name": "📍・stage-7-review-your-trades",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 6
+    },
+    {
+      "id": "1526354230649028820",
+      "name": "🎫 SUPPORT",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 6
+    },
+    {
+      "id": "1526354248365899816",
+      "name": "🔒 STAFF",
+      "type": "GuildCategory",
+      "parentId": null,
+      "position": 7
+    },
+    {
+      "id": "1526354129188945991",
+      "name": "📍・stage-8-build-your-process",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 7
+    },
+    {
+      "id": "1526354202312446032",
+      "name": "🎥・zoom-links",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 7
+    },
+    {
+      "id": "1526354132842320045",
+      "name": "📍・stage-9-30-day-challenge",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 8
+    },
+    {
+      "id": "1526354205860827146",
+      "name": "📂・resources",
+      "type": "GuildText",
+      "parentId": "1526354172214120590",
+      "position": 8
+    },
+    {
+      "id": "1526354136721789092",
+      "name": "📍・stage-10-advanced-concepts",
+      "type": "GuildText",
+      "parentId": "1526354100655095930",
+      "position": 9
+    }
+  ]
+}

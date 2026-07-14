@@ -1,0 +1,362 @@
+{
+  "generatedAt": "2026-07-13T22:33:16.002Z",
+  "categories": [
+    "📌 START HERE",
+    "🎓 EDUCATIONAL ROADMAP",
+    "📊 TRADING FLOOR",
+    "💬 COMMUNITY",
+    "🧪 PROCESS LAB",
+    "🎓 PROCESS LAB ALUMNI",
+    "🎫 SUPPORT",
+    "🔒 STAFF"
+  ],
+  "channels": [
+    {
+      "category": "📌 START HERE",
+      "id": "1526355293620011048",
+      "channels": [
+        {
+          "name": "👋・welcome",
+          "id": "1526355297189499110",
+          "kind": "intro"
+        },
+        {
+          "name": "📜・community-rules",
+          "id": "1526355303048937513",
+          "kind": "rules"
+        },
+        {
+          "name": "🧭・how-to-navigate",
+          "id": "1526355308383965296",
+          "kind": "readonly"
+        },
+        {
+          "name": "🙋・introduce-yourself",
+          "id": "1526355313979297862",
+          "kind": "intro"
+        },
+        {
+          "name": "📢・announcements",
+          "id": "1526355318953476248",
+          "kind": "announcement"
+        },
+        {
+          "name": "❓・faq",
+          "id": "1526355325018443998",
+          "kind": "readonly"
+        }
+      ]
+    },
+    {
+      "category": "🎓 EDUCATIONAL ROADMAP",
+      "id": "1526355348426981518",
+      "channels": [
+        {
+          "name": "📍・stage-1-market-foundation",
+          "id": "1526355352474488905",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-2-market-structure",
+          "id": "1526355357918560478",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-3-supply-demand",
+          "id": "1526355363342057492",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-4-multi-timeframe",
+          "id": "1526355369545302278",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-5-entries-risk-management",
+          "id": "1526355376457650229",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-6-record-yourself",
+          "id": "1526355391569723604",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-7-review-your-trades",
+          "id": "1526355397110267974",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-8-build-your-process",
+          "id": "1526355403431215290",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-9-30-day-challenge",
+          "id": "1526355409177149550",
+          "kind": "lesson"
+        },
+        {
+          "name": "📍・stage-10-advanced-concepts",
+          "id": "1526355414063775972",
+          "kind": "lesson"
+        }
+      ]
+    },
+    {
+      "category": "📊 TRADING FLOOR",
+      "id": "1526355436838850740",
+      "channels": [
+        {
+          "name": "📊・daily-analysis",
+          "id": "1526355440105951425",
+          "kind": "chat"
+        },
+        {
+          "name": "📈・trade-reviews",
+          "id": "1526355445940355113",
+          "kind": "trade"
+        },
+        {
+          "name": "📝・process-journal",
+          "id": "1526355451082707035",
+          "kind": "chat"
+        },
+        {
+          "name": "📸・chart-markups",
+          "id": "1526355456237244566",
+          "kind": "chat"
+        },
+        {
+          "name": "💬・market-discussion",
+          "id": "1526355461878714429",
+          "kind": "chat"
+        },
+        {
+          "name": "🎥・live-sessions",
+          "id": "1526355479486402681",
+          "kind": "readonly"
+        },
+        {
+          "name": "📚・session-replays",
+          "id": "1526355492450861128",
+          "kind": "readonly"
+        }
+      ]
+    },
+    {
+      "category": "💬 COMMUNITY",
+      "id": "1525118569656877108",
+      "channels": [
+        {
+          "name": "🧠・market-commentary",
+          "id": "1525118580398751804",
+          "kind": "preserved"
+        },
+        {
+          "name": "📈・trade-reviews",
+          "id": "1525118584693456979",
+          "kind": "preserved"
+        },
+        {
+          "name": "☕・off-topic",
+          "id": "1525118596718788710",
+          "kind": "preserved"
+        }
+      ]
+    },
+    {
+      "category": "🧪 PROCESS LAB",
+      "id": "1526355499631509516",
+      "channels": [
+        {
+          "name": "📢・lab-announcements",
+          "id": "1526355503909830686",
+          "kind": "pl_announcement"
+        },
+        {
+          "name": "📖・week-1-building-your-process",
+          "id": "1526355509945303191",
+          "kind": "pl_readonly"
+        },
+        {
+          "name": "🎥・week-2-reviewing-trades",
+          "id": "1526355515062354001",
+          "kind": "pl_readonly"
+        },
+        {
+          "name": "🧠・week-3-eliminating-mistakes",
+          "id": "1526355522754842725",
+          "kind": "pl_readonly"
+        },
+        {
+          "name": "🚀・week-4-building-confidence",
+          "id": "1526355528094318673",
+          "kind": "pl_readonly"
+        },
+        {
+          "name": "📤・homework-submissions",
+          "id": "1526355533139804293",
+          "kind": "homework"
+        },
+        {
+          "name": "💬・cohort-chat",
+          "id": "1526355538818895922",
+          "kind": "chat"
+        },
+        {
+          "name": "🎥・zoom-links",
+          "id": "1526355543990468809",
+          "kind": "pl_readonly"
+        },
+        {
+          "name": "📂・resources",
+          "id": "1526355568112173186",
+          "kind": "pl_readonly"
+        }
+      ]
+    },
+    {
+      "category": "🎓 PROCESS LAB ALUMNI",
+      "id": "1526355575326117939",
+      "channels": [
+        {
+          "name": "💬・alumni-lounge",
+          "id": "1526355578560057508",
+          "kind": "chat"
+        },
+        {
+          "name": "📈・continued-trade-reviews",
+          "id": "1526355584750719117",
+          "kind": "trade"
+        },
+        {
+          "name": "🧠・process-improvements",
+          "id": "1526355590371086461",
+          "kind": "chat"
+        },
+        {
+          "name": "🏆・success-stories",
+          "id": "1526355595521687604",
+          "kind": "chat"
+        }
+      ]
+    },
+    {
+      "category": "🎫 SUPPORT",
+      "id": "1526355612970258693",
+      "channels": [
+        {
+          "name": "🎫・open-ticket",
+          "id": "1526355616698728661",
+          "kind": "chat"
+        },
+        {
+          "name": "💳・billing-support",
+          "id": "1526355621992202350",
+          "kind": "chat"
+        },
+        {
+          "name": "❓・general-support",
+          "id": "1526355627365105704",
+          "kind": "chat"
+        }
+      ]
+    },
+    {
+      "category": "🔒 STAFF",
+      "id": "1526355644712616046",
+      "channels": [
+        {
+          "name": "📋・staff-dashboard",
+          "id": "1526355650349760595",
+          "kind": "staff"
+        },
+        {
+          "name": "💬・staff-chat",
+          "id": "1526355657073229994",
+          "kind": "staff"
+        },
+        {
+          "name": "📝・mod-notes",
+          "id": "1526355662416642170",
+          "kind": "staff"
+        },
+        {
+          "name": "📊・member-management",
+          "id": "1526355668771278952",
+          "kind": "staff"
+        },
+        {
+          "name": "💳・whop-payment-logs",
+          "id": "1526355674278396094",
+          "kind": "staff"
+        },
+        {
+          "name": "🤖・bot-logs",
+          "id": "1526355679399510179",
+          "kind": "staff"
+        }
+      ]
+    }
+  ],
+  "permissionMatrix": {
+    "📌 START HERE": {
+      "@everyone": true,
+      "Member": true,
+      "Process Lab": true,
+      "Alumni": true,
+      "Staff": true
+    },
+    "🎓 EDUCATIONAL ROADMAP": {
+      "@everyone": false,
+      "Member": true,
+      "Process Lab": true,
+      "Alumni": true,
+      "Staff": true
+    },
+    "📊 TRADING FLOOR": {
+      "@everyone": false,
+      "Member": true,
+      "Process Lab": true,
+      "Alumni": true,
+      "Staff": true
+    },
+    "💬 COMMUNITY": {
+      "@everyone": false,
+      "Member": true,
+      "Process Lab": false,
+      "Alumni": false,
+      "Staff": true
+    },
+    "🧪 PROCESS LAB": {
+      "@everyone": false,
+      "Member": false,
+      "Process Lab": true,
+      "Alumni": false,
+      "Staff": true
+    },
+    "🎓 PROCESS LAB ALUMNI": {
+      "@everyone": false,
+      "Member": false,
+      "Process Lab": false,
+      "Alumni": true,
+      "Staff": true
+    },
+    "🎫 SUPPORT": {
+      "@everyone": false,
+      "Member": true,
+      "Process Lab": true,
+      "Alumni": true,
+      "Staff": true
+    },
+    "🔒 STAFF": {
+      "@everyone": false,
+      "Member": false,
+      "Process Lab": false,
+      "Alumni": false,
+      "Staff": true
+    }
+  },
+  "issues": []
+}
