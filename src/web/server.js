@@ -94,10 +94,11 @@ function buildEmbed(data = {}) {
     if (embed.data.fields && embed.data.fields.length >= LIMITS.maxFields) break;
   }
   if (isValidUrl(data.thumbnail)) embed.setThumbnail(data.thumbnail);
-  // The banner renders in the embed image slot (with the text). It takes
-  // precedence over the standalone image field; otherwise the image is used.
-  if (isValidUrl(data.banner)) embed.setImage(data.banner);
-  else if (isValidUrl(data.image)) embed.setImage(data.image);
+  // Image and banner share the single embed image slot. When both are set the
+  // banner is sent as a leading attachment (handled in /api/publish), so the
+  // image takes the slot here; otherwise whichever is set fills the slot.
+  if (isValidUrl(data.image)) embed.setImage(data.image);
+  else if (isValidUrl(data.banner)) embed.setImage(data.banner);
   if (data.footer && data.footer.text)
     embed.setFooter({
       text: data.footer.text.slice(0, LIMITS.footer),
@@ -381,43 +382,22 @@ export function startWebServer(client, config) {
           });
 
         const components = buildComponents(data.buttons);
-        const mode = data.bannerMode || "both";
         const bannerUrl = isValidUrl(data.banner) ? data.banner : null;
-
-        // Banner-only: send just the image, no embed.
-        if (mode === "banner") {
-          if (!bannerUrl)
-            return sendJson(res, 400, { error: "Banner-only mode needs a Banner URL." });
-          let sent = 0;
-          const errors = [];
-          for (const t of targets) {
-            try {
-              await t.send({
-                files: [{ attachment: bannerUrl, name: "banner.png" }],
-                components,
-              });
-              sent++;
-            } catch (e) {
-              errors.push(`${t.name}: ${e.message}`);
-            }
-          }
-          return sendJson(res, 200, {
-            sent,
-            total: targets.length,
-            errors: errors.slice(0, 5),
-          });
-        }
-
-        // Text-only or both: build the embed (banner excluded unless "both").
-        // When "both", the banner is rendered in the embed image slot.
-        const embed = buildEmbed(
-          mode === "both" ? data : Object.assign({}, data, { banner: "" })
-        );
+        const imageUrl = isValidUrl(data.image) ? data.image : null;
+        const embed = buildEmbed(data);
         let sent = 0;
         const errors = [];
         for (const t of targets) {
           try {
-            await t.send({ embeds: [embed], components });
+            const opts = { embeds: [embed], components };
+            // When both a banner and an image are set, the banner is sent as a
+            // leading attachment (above the embed) and the image stays in the
+            // embed image slot (below the text). Otherwise each renders in its
+            // own slot independently.
+            if (bannerUrl && imageUrl) {
+              opts.files = [{ attachment: bannerUrl, name: "banner.png" }];
+            }
+            await t.send(opts);
             sent++;
           } catch (e) {
             errors.push(`${t.name}: ${e.message}`);

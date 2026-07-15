@@ -198,6 +198,8 @@
   }
   .embed .banner { margin: -14px -16px 12px; border-radius: 8px 8px 0 0; overflow: hidden; }
   .embed .banner img { width: 100%; max-height: 220px; object-fit: cover; display: block; }
+  .banner.lead { margin: 0 0 12px; border-radius: 8px; overflow: hidden; }
+  .banner.lead img { width: 100%; max-height: 240px; object-fit: cover; display: block; border-radius: 8px; }
   .embed .thumb { float: right; margin: 0 0 8px 12px; }
   .embed .thumb img { width: 64px; height: 64px; border-radius: 8px; object-fit: cover; }
   .embed .author { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; font-weight: 600; color: var(--text); }
@@ -335,13 +337,7 @@
         <label>Banner URL (header image)</label><input id="banner" type="text" placeholder="https://…/banner.png" />
         <button class="upload-btn" onclick="uploadTo('banner')">⬆ Upload banner</button>
         <label style="margin-top:14px">Banner position</label>
-        <label style="margin-top:14px">Send as</label>
-        <select id="bannerMode">
-          <option value="both">Text + Banner</option>
-          <option value="text">Text only</option>
-          <option value="banner">Banner only</option>
-        </select>
-        <p class="hint">The banner renders as the embed image (with the text). Send as Text + Banner, Text only, or Banner only.</p>
+        <p class="hint">Banner and Image are independent. With both set, the banner appears above the embed and the image below the text; with only one, it sits in the embed.</p>
       </div>
       <div class="card">
         <h3>Thumbnail</h3>
@@ -476,7 +472,7 @@ let editingId = null;
 
 function blank() {
   return { author:{name:'',iconUrl:'',url:''}, title:'', url:'', description:'',
-    color:'#5865f2', banner:'', bannerMode:'both', thumbnail:'', image:'', footer:{text:'',iconUrl:''}, timestamp:false,
+    color:'#5865f2', banner:'', thumbnail:'', image:'', footer:{text:'',iconUrl:''}, timestamp:false,
     fields:[], buttons:[] };
 }
 
@@ -493,7 +489,6 @@ function collect() {
   state.description = $('description').value;
   state.color = $('colorHex').value || '#5865f2';
   state.banner = $('banner').value;
-  state.bannerMode = $('bannerMode').value || 'both';
   state.thumbnail = $('thumbnail').value;
   state.image = $('image').value;
   state.footer = { text: $('footerText').value, iconUrl: $('footerIcon').value };
@@ -512,7 +507,6 @@ function renderForm() {
   $('color').value = state.color || '#5865f2';
   $('colorHex').value = state.color || '#5865f2';
   $('banner').value = state.banner || '';
-  $('bannerMode').value = state.bannerMode || 'both';
   $('thumbnail').value = state.thumbnail || '';
   $('image').value = state.image || '';
   $('footerText').value = state.footer.text || '';
@@ -563,7 +557,6 @@ $('colorHex').oninput = () => { $('color').value = $('colorHex').value; collect(
 ['authorName','authorIcon','authorUrl','title','titleUrl','description','banner','thumbnail','image','footerText','footerIcon'].forEach(id => {
   $(id).addEventListener('input', () => { collect(); preview(); });
 });
-$('bannerMode').addEventListener('change', () => { collect(); preview(); });
 $('timestamp').addEventListener('change', () => { collect(); preview(); });
 
 // ---------- preview ----------
@@ -571,18 +564,8 @@ function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').repla
 function preview() {
   collect();
   const s = state;
-  const mode = s.bannerMode || 'both';
-  if (mode === 'banner') {
-    const e = document.createElement('div'); e.className = 'embed';
-    e.innerHTML = s.banner
-      ? `<div class="banner"><img src="${esc(s.banner)}" onerror="this.style.display='none'"></div>`
-      : '<div class="hint">No banner set — add a Banner URL to send an image-only message.</div>';
-    $('preview').innerHTML = ''; $('preview').appendChild(e);
-    return;
-  }
   const e = document.createElement('div'); e.className = 'embed';
   e.style.borderLeftColor = s.color || '#5865f2';
-  const showBanner = mode === 'both';
   if (s.thumbnail) e.innerHTML += `<div class="thumb"><img src="${esc(s.thumbnail)}" onerror="this.style.display='none'"></div>`;
   if (s.author.name) e.innerHTML += `<div class="author">${s.author.iconUrl?`<img src="${esc(s.author.iconUrl)}" onerror="this.style.display='none'">`:''}<span>${esc(s.author.name)}</span></div>`;
   if (s.title) e.innerHTML += `<div class="title">${esc(s.title)}</div>`;
@@ -593,8 +576,7 @@ function preview() {
     s.fields.forEach(f => { if(f.name||f.value) html += `<div class="field"><div class="fn">${esc(f.name)}</div><div class="fv">${esc(f.value)}</div></div>`; });
     html += `</div>`; e.innerHTML += html;
   }
-  if (showBanner && s.banner) e.innerHTML += `<div class="image"><img src="${esc(s.banner)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
-  else if (s.image) e.innerHTML += `<div class="image"><img src="${esc(s.image)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
+  if (s.image) e.innerHTML += `<div class="image"><img src="${esc(s.image)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
   if (s.footer.text) e.innerHTML += `<div class="footer">${s.footer.iconUrl?`<img src="${esc(s.footer.iconUrl)}" onerror="this.style.display='none'">`:''}<span>${esc(s.footer.text)}${s.timestamp?' • ' + new Date().toLocaleString():''}</span></div>`;
   else if (s.timestamp) e.innerHTML += `<div class="footer"><span>${new Date().toLocaleString()}</span></div>`;
   if (s.buttons.length) {
@@ -602,7 +584,16 @@ function preview() {
     s.buttons.forEach(b => { const cls = b.style==='link'?'link':(b.style==='danger'?'red':(b.style==='primary'?'':'grey')); bh += `<span class="btn ${cls}">${esc(b.label||'Button')}</span>`; });
     bh += '</div>'; e.innerHTML += bh;
   }
-  $('preview').innerHTML = ''; $('preview').appendChild(e);
+  const wrap = document.createElement('div');
+  if (s.banner && s.image) {
+    const b = document.createElement('div'); b.className = 'banner lead';
+    b.innerHTML = `<img src="${esc(s.banner)}" onerror="this.style.display='none'">`;
+    wrap.appendChild(b);
+  } else if (s.banner) {
+    e.innerHTML += `<div class="image"><img src="${esc(s.banner)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
+  }
+  wrap.appendChild(e);
+  $('preview').innerHTML = ''; $('preview').appendChild(wrap);
 }
 
 // ---------- templates ----------
