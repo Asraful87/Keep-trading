@@ -335,17 +335,13 @@
         <label>Banner URL (header image)</label><input id="banner" type="text" placeholder="https://…/banner.png" />
         <button class="upload-btn" onclick="uploadTo('banner')">⬆ Upload banner</button>
         <label style="margin-top:14px">Banner position</label>
-        <select id="bannerPosition">
-          <option value="header">Header — image first, then text</option>
-          <option value="footer">Footer — image at the bottom</option>
-        </select>
         <label style="margin-top:14px">Send as</label>
         <select id="bannerMode">
           <option value="both">Text + Banner</option>
           <option value="text">Text only</option>
           <option value="banner">Banner only</option>
         </select>
-        <p class="hint">Choose what to publish: the embed with the banner, only the text, or only the banner image.</p>
+        <p class="hint">The banner renders as the embed image (with the text). Send as Text + Banner, Text only, or Banner only.</p>
       </div>
       <div class="card">
         <h3>Thumbnail</h3>
@@ -480,7 +476,7 @@ let editingId = null;
 
 function blank() {
   return { author:{name:'',iconUrl:'',url:''}, title:'', url:'', description:'',
-    color:'#5865f2', banner:'', bannerPosition:'header', bannerMode:'both', thumbnail:'', image:'', footer:{text:'',iconUrl:''}, timestamp:false,
+    color:'#5865f2', banner:'', bannerMode:'both', thumbnail:'', image:'', footer:{text:'',iconUrl:''}, timestamp:false,
     fields:[], buttons:[] };
 }
 
@@ -497,7 +493,6 @@ function collect() {
   state.description = $('description').value;
   state.color = $('colorHex').value || '#5865f2';
   state.banner = $('banner').value;
-  state.bannerPosition = $('bannerPosition').value || 'header';
   state.bannerMode = $('bannerMode').value || 'both';
   state.thumbnail = $('thumbnail').value;
   state.image = $('image').value;
@@ -517,7 +512,6 @@ function renderForm() {
   $('color').value = state.color || '#5865f2';
   $('colorHex').value = state.color || '#5865f2';
   $('banner').value = state.banner || '';
-  $('bannerPosition').value = state.bannerPosition || 'header';
   $('bannerMode').value = state.bannerMode || 'both';
   $('thumbnail').value = state.thumbnail || '';
   $('image').value = state.image || '';
@@ -569,7 +563,6 @@ $('colorHex').oninput = () => { $('color').value = $('colorHex').value; collect(
 ['authorName','authorIcon','authorUrl','title','titleUrl','description','banner','thumbnail','image','footerText','footerIcon'].forEach(id => {
   $(id).addEventListener('input', () => { collect(); preview(); });
 });
-$('bannerPosition').addEventListener('change', () => { collect(); preview(); });
 $('bannerMode').addEventListener('change', () => { collect(); preview(); });
 $('timestamp').addEventListener('change', () => { collect(); preview(); });
 
@@ -589,9 +582,7 @@ function preview() {
   }
   const e = document.createElement('div'); e.className = 'embed';
   e.style.borderLeftColor = s.color || '#5865f2';
-  const bannerPos = s.bannerPosition || 'header';
   const showBanner = mode === 'both';
-  if (showBanner && s.banner && bannerPos !== 'footer') e.innerHTML += `<div class="banner"><img src="${esc(s.banner)}" onerror="this.style.display='none'"></div>`;
   if (s.thumbnail) e.innerHTML += `<div class="thumb"><img src="${esc(s.thumbnail)}" onerror="this.style.display='none'"></div>`;
   if (s.author.name) e.innerHTML += `<div class="author">${s.author.iconUrl?`<img src="${esc(s.author.iconUrl)}" onerror="this.style.display='none'">`:''}<span>${esc(s.author.name)}</span></div>`;
   if (s.title) e.innerHTML += `<div class="title">${esc(s.title)}</div>`;
@@ -602,8 +593,8 @@ function preview() {
     s.fields.forEach(f => { if(f.name||f.value) html += `<div class="field"><div class="fn">${esc(f.name)}</div><div class="fv">${esc(f.value)}</div></div>`; });
     html += `</div>`; e.innerHTML += html;
   }
-  if (s.image) e.innerHTML += `<div class="image"><img src="${esc(s.image)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
-  else if (showBanner && s.banner && bannerPos === 'footer') e.innerHTML += `<div class="image"><img src="${esc(s.banner)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
+  if (showBanner && s.banner) e.innerHTML += `<div class="image"><img src="${esc(s.banner)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
+  else if (s.image) e.innerHTML += `<div class="image"><img src="${esc(s.image)}" onerror="this.style.display='none'" style="max-width:100%"></div>`;
   if (s.footer.text) e.innerHTML += `<div class="footer">${s.footer.iconUrl?`<img src="${esc(s.footer.iconUrl)}" onerror="this.style.display='none'">`:''}<span>${esc(s.footer.text)}${s.timestamp?' • ' + new Date().toLocaleString():''}</span></div>`;
   else if (s.timestamp) e.innerHTML += `<div class="footer"><span>${new Date().toLocaleString()}</span></div>`;
   if (s.buttons.length) {
@@ -657,17 +648,19 @@ function delTpl(id) { if(!confirm('Delete template?')) return; API({ path:'/temp
 let uploadTarget = '';
 function uploadTo(target) { uploadTarget = target; $('fileInput').click(); }
 $('fileInput').addEventListener('change', () => {
-  const file = $('fileInput').files[0]; if (!file) return;
+  const file = $('fileInput').files[0];
+  $('fileInput').value = '';
+  if (!file) return;
+  toast('Uploading…');
   const reader = new FileReader();
   reader.onload = () => {
     const base64 = reader.result.split(',')[1];
-    API({ path:'/upload', method:'POST', body:{ filename:file.name, data: base64 } }).then(r => {
+    API({ path:'/upload', method:'POST', body:{ filename: file.name, data: base64 } }).then(r => {
       if (r.ok) { $(uploadTarget).value = r.data.url; collect(); preview(); toast('Uploaded'); }
       else toast('Upload failed: ' + (r.data.error||r.status));
     });
   };
   reader.readAsDataURL(file);
-  $('fileInput').value = '';
 });
 
 // ---------- publish ----------

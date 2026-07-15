@@ -94,11 +94,10 @@ function buildEmbed(data = {}) {
     if (embed.data.fields && embed.data.fields.length >= LIMITS.maxFields) break;
   }
   if (isValidUrl(data.thumbnail)) embed.setThumbnail(data.thumbnail);
-  // When a banner is set in "footer" mode it occupies the embed image slot;
-  // otherwise the standalone image field is used.
-  const bannerFooter =
-    isValidUrl(data.banner) && (data.bannerPosition || "header") === "footer";
-  if (isValidUrl(data.image) && !bannerFooter) embed.setImage(data.image);
+  // The banner renders in the embed image slot (with the text). It takes
+  // precedence over the standalone image field; otherwise the image is used.
+  if (isValidUrl(data.banner)) embed.setImage(data.banner);
+  else if (isValidUrl(data.image)) embed.setImage(data.image);
   if (data.footer && data.footer.text)
     embed.setFooter({
       text: data.footer.text.slice(0, LIMITS.footer),
@@ -384,8 +383,6 @@ export function startWebServer(client, config) {
         const components = buildComponents(data.buttons);
         const mode = data.bannerMode || "both";
         const bannerUrl = isValidUrl(data.banner) ? data.banner : null;
-        const bannerHeader =
-          bannerUrl && (data.bannerPosition || "header") !== "footer";
 
         // Banner-only: send just the image, no embed.
         if (mode === "banner") {
@@ -412,6 +409,7 @@ export function startWebServer(client, config) {
         }
 
         // Text-only or both: build the embed (banner excluded unless "both").
+        // When "both", the banner is rendered in the embed image slot.
         const embed = buildEmbed(
           mode === "both" ? data : Object.assign({}, data, { banner: "" })
         );
@@ -419,11 +417,7 @@ export function startWebServer(client, config) {
         const errors = [];
         for (const t of targets) {
           try {
-            const opts = { embeds: [embed], components };
-            if (mode === "both" && bannerHeader) {
-              opts.files = [{ attachment: bannerUrl, name: "banner.png" }];
-            }
-            await t.send(opts);
+            await t.send({ embeds: [embed], components });
             sent++;
           } catch (e) {
             errors.push(`${t.name}: ${e.message}`);
