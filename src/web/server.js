@@ -381,23 +381,46 @@ export function startWebServer(client, config) {
             error: "No valid text channel(s) resolved for the target.",
           });
 
-        const embed = buildEmbed(data);
         const components = buildComponents(data.buttons);
-
-        // Banner as a header: send the image as a leading attachment so it
-        // renders ABOVE the embed (image-first, then text). Banner as a footer
-        // reuses the embed image slot (handled in buildEmbed).
+        const mode = data.bannerMode || "both";
         const bannerUrl = isValidUrl(data.banner) ? data.banner : null;
         const bannerHeader =
           bannerUrl && (data.bannerPosition || "header") !== "footer";
-        if (bannerUrl && !bannerHeader) embed.setImage(bannerUrl);
 
+        // Banner-only: send just the image, no embed.
+        if (mode === "banner") {
+          if (!bannerUrl)
+            return sendJson(res, 400, { error: "Banner-only mode needs a Banner URL." });
+          let sent = 0;
+          const errors = [];
+          for (const t of targets) {
+            try {
+              await t.send({
+                files: [{ attachment: bannerUrl, name: "banner.png" }],
+                components,
+              });
+              sent++;
+            } catch (e) {
+              errors.push(`${t.name}: ${e.message}`);
+            }
+          }
+          return sendJson(res, 200, {
+            sent,
+            total: targets.length,
+            errors: errors.slice(0, 5),
+          });
+        }
+
+        // Text-only or both: build the embed (banner excluded unless "both").
+        const embed = buildEmbed(
+          mode === "both" ? data : Object.assign({}, data, { banner: "" })
+        );
         let sent = 0;
         const errors = [];
         for (const t of targets) {
           try {
             const opts = { embeds: [embed], components };
-            if (bannerHeader) {
+            if (mode === "both" && bannerHeader) {
               opts.files = [{ attachment: bannerUrl, name: "banner.png" }];
             }
             await t.send(opts);
